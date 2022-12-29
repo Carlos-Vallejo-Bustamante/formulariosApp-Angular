@@ -16,7 +16,8 @@
                            formControlName="nombre"
                            placeholder="Nombre del producto">
 
-                    <span class="form-text text-danger"> 
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('nombre')"> 
                         Mínimo 3 caracteres
                     </span>
                 </div>
@@ -31,7 +32,8 @@
                        class="form-control"
                        formControlName="precio"
                        placeholder="Precio del producto">
-                <span class="form-text text-danger"> 
+                <span class="form-text text-danger"
+                      *ngIf="campoNoValido('precio')"> 
                         Precio mínimo de 1 €
                 </span>
                 </div>
@@ -46,6 +48,10 @@
                        class="form-control"
                        formControlName="existencias"
                        placeholder="Existencias del producto">
+                <span class="form-text text-danger"
+                      *ngIf="campoNoValido('existencias')"> 
+                        Existencias minimas 0 o mayor.
+                </span>
                 </div>
             </div>
 
@@ -77,7 +83,7 @@
         <pre>{{ miFormulario.touched }}</pre>
 
         <span>Valid</span>
-        <pre>{{ miFormulario.value | json }}</pre>
+        <pre>{{ miFormulario.controls['precio'].errors | json }}</pre>
 
     </div>
 </div>
