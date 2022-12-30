@@ -21,7 +21,22 @@ export class RegistroComponent implements OnInit {
     password2: ['', [Validators.required]],
   }, {
     validators: [this.validatorService.camposIguales('password', 'password2')]
-  })
+  });
+
+  get emailErrorMsg(): string {
+
+    const errors = this.miFormulario.get('email')?.errors;
+
+    if (errors?.['required']) {
+      return 'Email obligatorio';
+    } else if (errors?.['pattern']) {
+      return 'Email no tiene el formato correcto';
+    } else if (errors?.['emailOcupado']) {
+      return 'Email no disponible';
+    }
+
+    return '';
+  }
 
   constructor(private formBuilder: FormBuilder,
     private validatorService: ValidatorService,
@@ -32,7 +47,9 @@ export class RegistroComponent implements OnInit {
     this.miFormulario.reset({
       nombre: 'Carlos Vallejo',
       email: 'test1@test.com',
-      username: 'carlos84'
+      username: 'carlos84',
+      password: '123456',
+      password2: '123456'
     })
   }
 
@@ -40,6 +57,8 @@ export class RegistroComponent implements OnInit {
     return this.miFormulario.get(campo)?.invalid
       && this.miFormulario.get(campo)?.touched
   }
+
+
 
   submitFormulario() {
 

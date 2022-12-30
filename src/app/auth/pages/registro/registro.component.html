@@ -33,7 +33,7 @@
                            placeholder="Email del usuario">
                     <span class="form-text text-danger"
                           *ngIf="campoNoValido('email')">
-                        El correo es obligatorio
+                        {{ emailErrorMsg }}
                     </span>
                 </div>
             </div>
@@ -99,6 +99,8 @@
 </div>
 
 <h5>Form Valid {{ miFormulario.valid }}</h5>
+<h5>Form status {{ miFormulario.status }}</h5>
+<h5>Form pending {{ miFormulario.pending }}</h5>
 <h5>Form errors</h5>
 <pre>{{ miFormulario.errors | json }}</pre>
 
