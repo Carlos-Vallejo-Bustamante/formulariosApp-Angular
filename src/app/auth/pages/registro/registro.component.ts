@@ -12,14 +12,21 @@ export class RegistroComponent implements OnInit {
   //TODO: Temporal
 
   nombreApellidoPattern: string = '([a-zA-Z]+) ([a-zA-Z]+)'
+  emailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
 
   miFormulario: FormGroup = this.formBuilder.group({
-    nombre: ['', [Validators.required, Validators.pattern(this.nombreApellidoPattern)]]
+    nombre: ['', [Validators.required, Validators.pattern(this.nombreApellidoPattern)]],
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]]
   })
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.miFormulario.reset({
+      nombre: 'Carlos Vallejo',
+      email: 'test@test.com'
+    })
   }
 
   campoNoValido(campo: string) {
