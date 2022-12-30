@@ -1,7 +1,7 @@
 <h2>Template: <small>Switches</small></h2>
 <hr>
 
-<form>
+<form [formGroup]="miFormulario">
 
     <!-- Radio -->
     <div class="row mb-3">
@@ -12,7 +12,7 @@
                 <input class="form-check-input"
                        type="radio"
                        value="M"
-                       name="radioGenero"
+                       formControlName="genero"
                        id="radioMasculino"
                        required>
                 <label class="form-check-label" for="radioMasculino">
@@ -24,7 +24,7 @@
                 <input class="form-check-input"
                        type="radio"
                        value="F"
-                       name="radioGenero"
+                       formControlName="genero"
                        id="radioFemenino">
                 <label class="form-check-label" for="radioFemenino">
                   Femenino
@@ -43,6 +43,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        role="switch"
+                       formControlName="notificaciones"
                        id="flexSwitchCheckChecked">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
             </div>
@@ -58,6 +59,7 @@
             <div class="form-check">
                 <input class="form-check-input"
                        type="checkbox"
+                       formControlName="condiciones"
                        id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Términos y condiciones
@@ -77,7 +79,7 @@
     </div>
 </form>
 
-<!-- <h5>Valor del formulario</h5>
+<h5>Valor del formulario</h5>
 <pre>{{ miFormulario.value | json }}</pre>
 
 <h5>Persona</h5>
@@ -87,7 +89,7 @@
 <pre>{{ miFormulario.valid }}</pre>
 
 <h5>Términos</h5>
-<pre>{{ miFormulario.controls?.['terminos']?.errors | json }}</pre>
+<pre>{{ miFormulario?.controls?.['condiciones']?.errors | json }}</pre>
 
 <br>
-<pre>Condiciones:</pre> -->
+<pre>Condiciones:</pre>
