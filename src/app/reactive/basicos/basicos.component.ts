@@ -31,7 +31,7 @@ export class BasicosComponent implements OnInit {
   }
 
   campoNoValido(campo: string) {
-    return this.miFormulario.controls[campo].errors && this.miFormulario.controls['nombre'].touched
+    return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched
   }
 
   guardar() {
