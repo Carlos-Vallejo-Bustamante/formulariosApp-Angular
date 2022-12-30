@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class BasicosComponent {
+export class BasicosComponent implements OnInit {
 
   // miFormulario: FormGroup = new FormGroup({
   //   'nombre': new FormControl('RTX 4080ti'),
@@ -23,8 +23,27 @@ export class BasicosComponent {
 
   constructor(private formBuilder: FormBuilder) { }
 
+  ngOnInit() {
+    this.miFormulario.reset({
+      nombre: 'RTX 4080ti',
+      precio: 1500
+    })
+  }
+
   campoNoValido(campo: string) {
     return this.miFormulario.controls[campo].errors && this.miFormulario.controls['nombre'].touched
+  }
+
+  guardar() {
+
+    if (this.miFormulario.invalid) {
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.miFormulario.value);
+    this.miFormulario.reset();
+
   }
 
 
