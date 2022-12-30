@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { EmailValidatorService } from 'src/app/shared/validator/email-validator.service';
 import { ValidatorService } from '../../../shared/validator/validator.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class RegistroComponent implements OnInit {
 
   miFormulario: FormGroup = this.formBuilder.group({
     nombre: ['', [Validators.required, Validators.pattern(this.validatorService.nombreApellidoPattern)]],
-    email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
+    email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)], [this.emailValidator]],
     username: ['', [Validators.required, this.validatorService.noPuedeSerStrider]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     password2: ['', [Validators.required]],
@@ -23,13 +24,14 @@ export class RegistroComponent implements OnInit {
   })
 
   constructor(private formBuilder: FormBuilder,
-    private validatorService: ValidatorService) { }
+    private validatorService: ValidatorService,
+    private emailValidator: EmailValidatorService) { }
 
   ngOnInit(): void {
 
     this.miFormulario.reset({
       nombre: 'Carlos Vallejo',
-      email: 'test@test.com',
+      email: 'test1@test.com',
       username: 'carlos84'
     })
   }
